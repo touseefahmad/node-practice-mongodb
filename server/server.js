@@ -27,6 +27,19 @@ app.post('/todos',(req,res)=>{
 });
 
 //Get /todo
+app.get('/todos',(req,res)=>{
+  Todo.find().then((todos)=>{
+    res.send(
+      {
+        code: '200',
+        todos
+
+      }
+  );
+  },(e)=>{
+    res.status(400).send(e);
+  })
+});
 app.listen(port,()=>{
   console.log('Listening port',port);
 });
